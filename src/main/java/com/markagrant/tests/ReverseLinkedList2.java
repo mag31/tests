@@ -36,6 +36,13 @@ public class ReverseLinkedList2 {
     }
 
     Node reverseList(Node first, int m, int n) {
+
+        if(m < 0)
+            throw new IllegalArgumentException("m must be greater than zero");
+
+        if(m > n)
+            throw new IllegalArgumentException("m must be less than n");
+
         if(first.isTerminalNode())
             return first;
 

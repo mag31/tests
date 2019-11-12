@@ -5,7 +5,6 @@ public class ReverseLinkedList2 {
     static class Node {
 
         int value;
-
         Node next;
 
         Node(int value, Node next) {
@@ -46,12 +45,17 @@ public class ReverseLinkedList2 {
         if(first.isTerminalNode())
             return first;
 
-        Node second = first.repointNext(empty);
-        Node third = second.repointNext(first);
-        Node forth = third.repointNext(second);
-        Node fifth = forth.repointNext(third);
-        fifth.repointNext(forth);
+        Node previousNode = empty;
+        Node node = first;
+        while(!node.next.isTerminalNode()) {
 
-        return fifth;
+            Node nextNode = node.repointNext(previousNode);
+            previousNode = node;
+            node = nextNode;
+        }
+
+        node.repointNext(previousNode);
+
+        return node;
     }
 }

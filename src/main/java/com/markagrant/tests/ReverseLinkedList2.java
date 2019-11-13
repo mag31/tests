@@ -13,33 +13,26 @@ public class ReverseLinkedList2 {
         if(first.isTerminalNode())
             return first;
 
-        // 0 -> 1 -> 2 -> 3 -> 4 => 4 -> 3 -> 2 -> 1 -> 0
-        if(m == 0) {
-            int i = 0;
-            // reverse every pointer and return the
-            LinkedList previous = LinkedList.empty;
-            LinkedList current = first;
-            LinkedList next;
-            while(i <= n) {
-                next = current.repointNext(previous);
-                previous = current;
-                current = next;
-                i++;
-            }
-
-            first.repointNext(current);
-            return previous;
-        }
-
         int i = 0;
-
-        // get to the node before m
         LinkedList nodeBeforeM = LinkedList.empty;
         LinkedList nodeAtM = first;
+        // get to the node before m and node m
         while(i < m) {
             nodeBeforeM = nodeAtM;
             nodeAtM = nodeAtM.next;
             i++;
+        }
+
+        if(m == 0) {
+            while(i <= n) {
+                LinkedList next = nodeAtM.repointNext(nodeBeforeM);
+                nodeBeforeM = nodeAtM;
+                nodeAtM = next;
+                i++;
+            }
+
+            first.repointNext(nodeAtM);
+            return nodeBeforeM;
         }
 
         LinkedList previousNode = nodeBeforeM;

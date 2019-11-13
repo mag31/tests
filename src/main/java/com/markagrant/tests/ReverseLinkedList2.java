@@ -16,7 +16,7 @@ public class ReverseLinkedList2 {
         int i = 0;
         LinkedList nodeBeforeM = LinkedList.empty;
         LinkedList nodeAtM = first;
-        // get to the node before m and node m
+        // iterate through to m
         while(i < m) {
             nodeBeforeM = nodeAtM;
             nodeAtM = nodeAtM.next;
@@ -26,6 +26,7 @@ public class ReverseLinkedList2 {
         LinkedList previousNode = nodeBeforeM;
         LinkedList node = nodeAtM;
 
+        // reverse pointers up to n
         while(i < n) {
             LinkedList next = node.repointNext(previousNode);
             previousNode = node;
@@ -33,19 +34,20 @@ public class ReverseLinkedList2 {
             i++;
         }
 
-        // on the nth node we need to repoint it
+        // reverse the nth node
         LinkedList nodeAfterN = node.repointNext(previousNode);
-        if(m == 0) {
-            first.repointNext(nodeAfterN);
-            return node;
-        }
 
-        // then we repoint the nodeBeforeM to the Nth node
-        nodeBeforeM.repointNext(node);
-        // and we repoint the nodeAtM to the nodeAfterN
+        // reattach the node at m by pointing to to the node after n
         nodeAtM.repointNext(nodeAfterN);
+        if(m == 0) {
+            // when we are reversing the first node in the list then the start of the list is just the nth node
+            return node;
+        } else {
+            // if the first node isn't reversed then we need to reattach the node before m to the nth node
+            nodeBeforeM.repointNext(node);
 
-        // now ensure we are pointing to the correct first node
-        return first;
+            // and the list still starts at the first node
+            return first;
+        }
     }
 }

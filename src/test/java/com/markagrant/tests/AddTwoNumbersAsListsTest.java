@@ -66,12 +66,43 @@ public class AddTwoNumbersAsListsTest {
     }
 
     @Test
-    public void can_add_numbers() {
-        LinkedList a = LinkedList.from(1,2,3);
-        LinkedList b = LinkedList.from(4,5,6);
+    public void can_handle_multiple_carries() {
+        LinkedList a = LinkedList.from(5,6,7);
+        LinkedList b = LinkedList.from(9,7,5);
 
         LinkedList answer = sum.add(a, b);
 
-        assertTrue(answer.compare(LinkedList.from(5, 7, 9)));
+        assertTrue(answer.compare(LinkedList.from(4,4,3,1)));
     }
+
+    @Test
+    public void a_longer_than_b() {
+        LinkedList a = LinkedList.from(5,6,7,8);
+        LinkedList b = LinkedList.from(9,7,5);
+
+        LinkedList answer = sum.add(a, b);
+
+        assertTrue(answer.compare(LinkedList.from(4,4,3,9)));
+    }
+
+    @Test
+    public void b_longer_than_a() {
+        LinkedList a = LinkedList.from(5,6,7);
+        LinkedList b = LinkedList.from(9,7,5,4);
+
+        LinkedList answer = sum.add(a, b);
+
+        assertTrue(answer.compare(LinkedList.from(4,4,3,5)));
+    }
+
+    @Test
+    public void extra_carry() {
+        LinkedList a = LinkedList.from(5,6,7);
+        LinkedList b = LinkedList.from(9,7,5,9);
+
+        LinkedList answer = sum.add(a, b);
+
+        assertTrue(answer.compare(LinkedList.from(4,4,3,0,1)));
+    }
+
 }

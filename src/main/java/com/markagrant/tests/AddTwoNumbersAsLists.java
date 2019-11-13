@@ -11,17 +11,19 @@ public class AddTwoNumbersAsLists {
     }
 
     private LinkedList add(LinkedList a, LinkedList b, boolean carry) {
-        if(a.isNull() && b.isNull() && carry)
-            return new LinkedList(1, LinkedList.empty);
+        if(a.isNull() && b.isNull())
+            return carry ?
+                new LinkedList(1, LinkedList.empty) :
+                LinkedList.empty;
 
-        if(a.isNull())
-            return a;
+        LinkedList safeA = a.isNull() ? new LinkedList(0, LinkedList.empty) : a;
+        LinkedList safeB = b.isNull() ? new LinkedList(0, LinkedList.empty) : b;
 
-        int sum = a.value + b.value + (carry ? 1 : 0);
+        int sum = safeA.value + safeB.value + (carry ? 1 : 0);
 
         boolean carryNext = sum > 9;
 
-        LinkedList nextResult = add(a.next, b.next, carryNext);
+        LinkedList nextResult = add(safeA.next, safeB.next, carryNext);
 
         return new LinkedList(carryNext ? sum - 10 : sum, nextResult);
     }

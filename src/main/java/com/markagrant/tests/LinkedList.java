@@ -24,6 +24,10 @@ class LinkedList {
         return value == -1 ? " NULL" : "" + value;
     }
 
+    boolean compare(LinkedList other) {
+        return value == other.value && (other.next.isNull() && next.isNull() || next.compare(other.next));
+    }
+
     static LinkedList empty = new LinkedList(-1, null);
 
     static LinkedList from(int ... values) {

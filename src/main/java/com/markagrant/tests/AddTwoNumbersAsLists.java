@@ -7,14 +7,22 @@ public class AddTwoNumbersAsLists {
         if(b.isNull())
             throw new IllegalArgumentException("a cannot be an empty list");
 
-        int sum = a.value + b.value;
+        return add(a, b, false);
+    }
 
-        if(sum < 9) {
-            return LinkedList.from(a.value + b.value);
-        } else {
-            return LinkedList.from(sum - 10, 1);
-        }
+    private LinkedList add(LinkedList a, LinkedList b, boolean carry) {
+        if(a.isNull() && b.isNull() && carry)
+            return new LinkedList(1, LinkedList.empty);
 
-        //return LinkedList.from(5,7,9);
+        if(a.isNull())
+            return a;
+
+        int sum = a.value + b.value + (carry ? 1 : 0);
+
+        boolean carryNext = sum > 9;
+
+        LinkedList nextResult = add(a.next, b.next, carryNext);
+
+        return new LinkedList(carryNext ? sum - 10 : sum, nextResult);
     }
 }

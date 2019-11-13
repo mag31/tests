@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class AddTwoNumbersAsListsTest {
@@ -43,8 +42,7 @@ public class AddTwoNumbersAsListsTest {
 
         LinkedList answer = sum.add(a, b);
 
-        assertEquals(5, answer.value);
-        assertTrue(answer.next.isNull());
+        assertTrue(answer.compare(LinkedList.from(5)));
     }
 
     @Test
@@ -54,12 +52,19 @@ public class AddTwoNumbersAsListsTest {
 
         LinkedList answer = sum.add(a, b);
 
-        assertEquals(5, answer.value);
-        assertEquals(1, answer.next.value);
-        assertTrue(answer.next.next.isNull());
+        assertTrue(answer.compare(LinkedList.from(5, 1)));
     }
 
-    @Ignore
+    @Test
+    public void can_add_double_digits() {
+        LinkedList a = LinkedList.from(1,2);
+        LinkedList b = LinkedList.from(4,6);
+
+        LinkedList answer = sum.add(a, b);
+
+        assertTrue(answer.compare(LinkedList.from(5, 8)));
+    }
+
     @Test
     public void can_add_numbers() {
         LinkedList a = LinkedList.from(1,2,3);
@@ -67,8 +72,6 @@ public class AddTwoNumbersAsListsTest {
 
         LinkedList answer = sum.add(a, b);
 
-        assertEquals(5, answer.value);
-        assertEquals(7, answer.next.value);
-        assertEquals(9, answer.next.next.value);
+        assertTrue(answer.compare(LinkedList.from(5, 7, 9)));
     }
 }

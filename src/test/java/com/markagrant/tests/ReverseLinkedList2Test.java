@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class ReverseLinkedList2Test {
@@ -46,11 +45,7 @@ public class ReverseLinkedList2Test {
     public void reverse_whole_list() {
         LinkedList results = reverse.reverseList(LinkedList.from(0, 1, 2, 3, 4), 0, 4);
 
-        assertEquals(4, results.value);
-        assertEquals(3, results.next.value);
-        assertEquals(2, results.next.next.value);
-        assertEquals(1, results.next.next.next.value);
-        assertEquals(0, results.next.next.next.next.value);
+        assertTrue(results.compare(LinkedList.from(4, 3, 2, 1, 0)));
         assertTrue(reverse.i < 5);
     }
 
@@ -58,11 +53,7 @@ public class ReverseLinkedList2Test {
     public void reverse_first_n_nodes() {
         LinkedList results = reverse.reverseList(LinkedList.from(0, 1, 2, 3, 4), 0, 3);
 
-        assertEquals(3, results.value);
-        assertEquals(2, results.next.value);
-        assertEquals(1, results.next.next.value);
-        assertEquals(0, results.next.next.next.value);
-        assertEquals(4, results.next.next.next.next.value);
+        assertTrue(results.compare(LinkedList.from(3, 2, 1, 0, 4)));
         assertTrue(reverse.i < 5);
     }
 
@@ -70,11 +61,7 @@ public class ReverseLinkedList2Test {
     public void reverse_last_x_nodes() {
         LinkedList results = reverse.reverseList(LinkedList.from(0, 1, 2, 3, 4), 2, 4);
 
-        assertEquals(0, results.value);
-        assertEquals(1, results.next.value);
-        assertEquals(4, results.next.next.value);
-        assertEquals(3, results.next.next.next.value);
-        assertEquals(2, results.next.next.next.next.value);
+        assertTrue(results.compare(LinkedList.from(0, 1, 4, 3, 2)));
         assertTrue(reverse.i < 5);
     }
 
@@ -82,11 +69,7 @@ public class ReverseLinkedList2Test {
     public void flip_nothing() {
         LinkedList results = reverse.reverseList(LinkedList.from(0, 1, 2, 3, 4), 3, 3);
 
-        assertEquals(0, results.value);
-        assertEquals(1, results.next.value);
-        assertEquals(2, results.next.next.value);
-        assertEquals(3, results.next.next.next.value);
-        assertEquals(4, results.next.next.next.next.value);
+        assertTrue(results.compare(LinkedList.from(0, 1, 2, 3, 4)));
         assertTrue(reverse.i < 5);
     }
 
@@ -94,11 +77,7 @@ public class ReverseLinkedList2Test {
     public void reverse_part_of_list() {
         LinkedList results = reverse.reverseList(LinkedList.from(0, 1, 2, 3, 4), 1, 3);
 
-        assertEquals(0, results.value);
-        assertEquals(3, results.next.value);
-        assertEquals(2, results.next.next.value);
-        assertEquals(1, results.next.next.next.value);
-        assertEquals(4, results.next.next.next.next.value);
+        assertTrue(results.compare(LinkedList.from(0, 3, 2, 1, 4)));
         assertTrue(reverse.i < 5);
     }
 }

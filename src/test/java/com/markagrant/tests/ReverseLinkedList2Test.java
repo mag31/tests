@@ -18,33 +18,55 @@ public class ReverseLinkedList2Test {
 
     @Test
     public void can_reverse_empty_list() {
-        assertTrue(reverse.reverseList(ReverseLinkedList2.empty, 0, 0).isTerminalNode());
+        assertTrue(reverse.reverseList(LinkedList.empty, 0, 0).isTerminalNode());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void m_must_be_zero_or_greater() {
-        assertTrue(reverse.reverseList(ReverseLinkedList2.empty, -1, 0).isTerminalNode());
+        assertTrue(reverse.reverseList(LinkedList.empty, -1, 0).isTerminalNode());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void m_must_be_less_than_n() {
-        assertTrue(reverse.reverseList(ReverseLinkedList2.empty, 5, 4).isTerminalNode());
+        assertTrue(reverse.reverseList(LinkedList.empty, 5, 4).isTerminalNode());
     }
 
     @Ignore
     @Test(expected = IllegalArgumentException.class)
     public void n_must_be_less_than_list_length() {
-        // current node implementation doesn't make this trivial without reviewing the whole list
+        // current node implementation doesn't make this trivial without reviewing the whole from
     }
 
     @Test
     public void reverse_whole_list() {
-        ReverseLinkedList2.Node  results = reverse.reverseList(ReverseLinkedList2.list(1, 2, 3, 4, 5), 0, 5);
+        LinkedList results = reverse.reverseList(LinkedList.from(0, 1, 2, 3, 4), 0, 4);
 
-        assertEquals(5, results.value);
-        assertEquals(4, results.next.value);
-        assertEquals(3, results.next.next.value);
-        assertEquals(2, results.next.next.next.value);
-        assertEquals(1, results.next.next.next.next.value);
+        assertEquals(4, results.value);
+        assertEquals(3, results.next.value);
+        assertEquals(2, results.next.next.value);
+        assertEquals(1, results.next.next.next.value);
+        assertEquals(0, results.next.next.next.next.value);
+    }
+
+    @Test
+    public void reverse_first_n_nodes() {
+        LinkedList results = reverse.reverseList(LinkedList.from(0, 1, 2, 3, 4), 0, 3);
+
+        assertEquals(3, results.value);
+        assertEquals(2, results.next.value);
+        assertEquals(1, results.next.next.value);
+        assertEquals(0, results.next.next.next.value);
+        assertEquals(4, results.next.next.next.next.value);
+    }
+
+    @Test
+    public void reverse_part_of_list() {
+        LinkedList results = reverse.reverseList(LinkedList.from(0, 1, 2, 3, 4), 1, 3);
+
+        assertEquals(0, results.value);
+        assertEquals(3, results.next.value);
+        assertEquals(2, results.next.next.value);
+        assertEquals(1, results.next.next.next.value);
+        assertEquals(4, results.next.next.next.next.value);
     }
 }

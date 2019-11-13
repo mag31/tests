@@ -2,39 +2,7 @@ package com.markagrant.tests;
 
 public class ReverseLinkedList2 {
 
-    static class Node {
-
-        int value;
-        Node next;
-
-        Node(int value, Node next) {
-           this.value = value;
-           this.next = next;
-        }
-
-        Node repointNext(Node node) {
-            Node oldNext = next;
-            next = node;
-            return oldNext;
-        }
-
-        boolean isTerminalNode() {
-            return next == null;
-        }
-    }
-
-    static Node empty = new Node(-1, null);
-
-    static Node list(int ... values) {
-        Node node = empty;
-        for(int i = values.length - 1; i >= 0; i--) {
-            node = new Node(values[i], node);
-        }
-
-        return node;
-    }
-
-    Node reverseList(Node first, int m, int n) {
+    LinkedList reverseList(LinkedList first, int m, int n) {
 
         if(m < 0)
             throw new IllegalArgumentException("m must be greater than zero");
@@ -45,17 +13,52 @@ public class ReverseLinkedList2 {
         if(first.isTerminalNode())
             return first;
 
-        Node previousNode = empty;
-        Node node = first;
-        while(!node.next.isTerminalNode()) {
+        // 0 -> 1 -> 2 -> 3 -> 4 => 4 -> 3 -> 2 -> 1 -> 0
+        if(m == 0) {
+            int i = 0;
+            // reverse every pointer and return the
+            LinkedList previous = LinkedList.empty;
+            LinkedList current = first;
+            LinkedList next;
+            while(i <= n) {
+                next = current.repointNext(previous);
+                previous = current;
+                current = next;
+                i++;
+            }
 
-            Node nextNode = node.repointNext(previousNode);
-            previousNode = node;
-            node = nextNode;
+            first.repointNext(current);
+            return previous;
         }
 
-        node.repointNext(previousNode);
+        int i = 0;
 
-        return node;
+        // get to the node before m
+        LinkedList nodeBeforeM = LinkedList.empty;
+        LinkedList nodeAtM = first;
+        while(i < m) {
+            nodeBeforeM = nodeAtM;
+            nodeAtM = nodeAtM.next;
+            i++;
+        }
+
+        LinkedList previousNode = nodeBeforeM;
+        LinkedList node = nodeBeforeM.next;
+        while(i < n) {
+            LinkedList nextNode = node.repointNext(previousNode);
+            previousNode = node;
+            node = nextNode;
+            i++;
+        }
+
+        // on the nth node we need to repoint it
+        LinkedList nodeAfterN = node.repointNext(previousNode);
+        // then we repoint the nodeBeforeM to the Nth node
+        nodeBeforeM.repointNext(node);
+        // and we repoint the nodeAtM to the nodeAfterN
+        nodeAtM.repointNext(nodeAfterN);
+
+        // now ensure we are pointing to the correct first node
+        return first;
     }
 }

@@ -12,7 +12,7 @@ public class ReverseLinkedList2 {
         if(m > n)
             throw new IllegalArgumentException("m must be less than n");
 
-        if(first.isTerminalNode())
+        if(first.isNull())
             return first;
 
         LinkedList nodeBeforeM = LinkedList.empty;

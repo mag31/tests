@@ -18,17 +18,17 @@ public class ReverseLinkedList2Test {
 
     @Test
     public void can_reverse_empty_list() {
-        assertTrue(reverse.reverseList(LinkedList.empty, 0, 0).isTerminalNode());
+        assertTrue(reverse.reverseList(LinkedList.empty, 0, 0).isNull());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void m_must_be_zero_or_greater() {
-        assertTrue(reverse.reverseList(LinkedList.empty, -1, 0).isTerminalNode());
+        assertTrue(reverse.reverseList(LinkedList.empty, -1, 0).isNull());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void m_must_be_less_than_n() {
-        assertTrue(reverse.reverseList(LinkedList.empty, 5, 4).isTerminalNode());
+        assertTrue(reverse.reverseList(LinkedList.empty, 5, 4).isNull());
     }
 
     @Ignore

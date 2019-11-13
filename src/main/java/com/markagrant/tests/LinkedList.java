@@ -16,7 +16,7 @@ class LinkedList {
         return oldNext;
     }
 
-    boolean isTerminalNode() {
+    boolean isNull() {
         return next == null;
     }
 

@@ -2,6 +2,8 @@ package com.markagrant.tests;
 
 public class ReverseLinkedList2 {
 
+    int i = 0;
+
     LinkedList reverseList(LinkedList first, int m, int n) {
 
         if(m < 0)
@@ -13,7 +15,6 @@ public class ReverseLinkedList2 {
         if(first.isTerminalNode())
             return first;
 
-        int i = 0;
         LinkedList nodeBeforeM = LinkedList.empty;
         LinkedList nodeAtM = first;
         // iterate through to m

@@ -46,6 +46,7 @@ public class ReverseLinkedList2Test {
         assertEquals(2, results.next.next.value);
         assertEquals(1, results.next.next.next.value);
         assertEquals(0, results.next.next.next.next.value);
+        assertTrue(reverse.i < 5);
     }
 
     @Test
@@ -57,6 +58,7 @@ public class ReverseLinkedList2Test {
         assertEquals(1, results.next.next.value);
         assertEquals(0, results.next.next.next.value);
         assertEquals(4, results.next.next.next.next.value);
+        assertTrue(reverse.i < 5);
     }
 
     @Test
@@ -68,6 +70,7 @@ public class ReverseLinkedList2Test {
         assertEquals(4, results.next.next.value);
         assertEquals(3, results.next.next.next.value);
         assertEquals(2, results.next.next.next.next.value);
+        assertTrue(reverse.i < 5);
     }
 
     @Test
@@ -79,6 +82,7 @@ public class ReverseLinkedList2Test {
         assertEquals(2, results.next.next.value);
         assertEquals(3, results.next.next.next.value);
         assertEquals(4, results.next.next.next.next.value);
+        assertTrue(reverse.i < 5);
     }
 
     @Test
@@ -90,5 +94,6 @@ public class ReverseLinkedList2Test {
         assertEquals(2, results.next.next.value);
         assertEquals(1, results.next.next.next.value);
         assertEquals(4, results.next.next.next.next.value);
+        assertTrue(reverse.i < 5);
     }
 }

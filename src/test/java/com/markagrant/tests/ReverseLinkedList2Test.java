@@ -60,6 +60,28 @@ public class ReverseLinkedList2Test {
     }
 
     @Test
+    public void reverse_last_x_nodes() {
+        LinkedList results = reverse.reverseList(LinkedList.from(0, 1, 2, 3, 4), 2, 4);
+
+        assertEquals(0, results.value);
+        assertEquals(1, results.next.value);
+        assertEquals(4, results.next.next.value);
+        assertEquals(3, results.next.next.next.value);
+        assertEquals(2, results.next.next.next.next.value);
+    }
+
+    @Test
+    public void flip_nothing() {
+        LinkedList results = reverse.reverseList(LinkedList.from(0, 1, 2, 3, 4), 3, 3);
+
+        assertEquals(0, results.value);
+        assertEquals(1, results.next.value);
+        assertEquals(2, results.next.next.value);
+        assertEquals(3, results.next.next.next.value);
+        assertEquals(4, results.next.next.next.next.value);
+    }
+
+    @Test
     public void reverse_part_of_list() {
         LinkedList results = reverse.reverseList(LinkedList.from(0, 1, 2, 3, 4), 1, 3);
 

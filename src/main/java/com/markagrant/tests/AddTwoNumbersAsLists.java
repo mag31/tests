@@ -7,6 +7,14 @@ public class AddTwoNumbersAsLists {
         if(b.isNull())
             throw new IllegalArgumentException("a cannot be an empty list");
 
-        return LinkedList.from(5,7,9);
+        int sum = a.value + b.value;
+
+        if(sum < 9) {
+            return LinkedList.from(a.value + b.value);
+        } else {
+            return LinkedList.from(sum - 10, 1);
+        }
+
+        //return LinkedList.from(5,7,9);
     }
 }

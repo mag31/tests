@@ -16,6 +16,11 @@ public class ReverseLinkedList2Test {
         reverse = new ReverseLinkedList2();
     }
 
+    @Test(expected = NullPointerException.class)
+    public void list_cannot_be_null() {
+        assertTrue(reverse.reverseList(null, 0, 0).isNull());
+    }
+
     @Test
     public void can_reverse_empty_list() {
         assertTrue(reverse.reverseList(LinkedList.empty, 0, 0).isNull());

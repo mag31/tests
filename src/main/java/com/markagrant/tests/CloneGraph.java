@@ -1,16 +1,12 @@
 package com.markagrant.tests;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class CloneGraph {
     public Graph clone(Graph graph) {
+        Set<String> visitedNodes = new HashSet<>();
 
-        List<Graph.Node> nodes = new ArrayList<>();
-        for(Graph.Node node : graph.nodes) {
-            nodes.add(new Graph.Node(node.label));
-        }
-
-        return new Graph(nodes);
+        return new Graph(graph.label);
     }
 }

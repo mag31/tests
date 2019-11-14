@@ -1,5 +1,6 @@
 package com.markagrant.tests;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -7,14 +8,18 @@ import java.util.stream.Collectors;
 
 class Graph {
 
-    class Node {
+    static class Node {
         String label;
 
-        List<String> neighbours;
+        List<Node> neighbours;
 
-        Node(String label, String ... neighbours) {
+        Node(String label) {
             this.label = label;
-            this.neighbours = Arrays.stream(neighbours).sorted().collect(Collectors.toList());
+            neighbours = new ArrayList<>();
+        }
+
+        void addNeighbour(Node neighbour) {
+            neighbours.add(neighbour);
         }
 
         boolean checkClone(Node original) {
@@ -22,9 +27,21 @@ class Graph {
                     neighbours.size() == original.neighbours.size() &&
                     neighbours.containsAll(original.neighbours);
         }
+
+        static void link(Node n1, Node n2) {
+            n1.addNeighbour(n2);
+            n2.addNeighbour(n1);
+        }
+
     }
 
     List<Node> nodes;
+
+    Graph(List<Node> nodes) {
+        this.nodes = nodes.stream()
+                .sorted(Comparator.comparing(n -> n.label))
+                .collect(Collectors.toList());
+    }
 
     Graph(Node ... nodes) {
         this.nodes = Arrays.stream(nodes)

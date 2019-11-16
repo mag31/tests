@@ -54,4 +54,16 @@ public class RegularExpression2Test {
         RegularExpression2 reg = new RegularExpression2();
         assertTrue(reg.isMatch("cab", "c*a*b"));
     }
+
+    @Test
+    public void dot_star_dot_star_dot__matches_cab() {
+        RegularExpression2 reg = new RegularExpression2();
+        assertTrue(reg.isMatch("cab", ".*.*."));
+    }
+
+    @Test
+    public void dot_star_dot_star__matches_cab() {
+        RegularExpression2 reg = new RegularExpression2();
+        assertTrue(reg.isMatch("cab", ".*.*"));
+    }
 }

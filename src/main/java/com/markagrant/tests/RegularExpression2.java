@@ -24,10 +24,19 @@ public class RegularExpression2 {
                     continue;
                 if(preceeding == '.' )
                     continue;
-                // zero length match
-                if(j + 1 < pattern.length() && t == pattern.charAt(++j)) {
-                    preceeding = t;
+                // zero length match - try next char
+                j++;
+                if(j == pattern.length())
+                    return false;
+                if(pattern.charAt(j) == '.') {
                     j++;
+                    preceeding = '.';
+                    continue;
+                }
+
+                if(t == pattern.charAt(j)) {
+                    j++;
+                    preceeding = t;
                     continue;
                 }
 

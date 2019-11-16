@@ -3,7 +3,7 @@ package com.markagrant.tests;
 import java.util.ArrayList;
 import java.util.List;
 
-class Graph {
+class Graph implements Comparable<Graph> {
 
     String label;
 
@@ -19,6 +19,11 @@ class Graph {
 
     void addNeighbour(Graph neighbour) {
         neighbours.add(neighbour);
+    }
+
+    @Override
+    public int compareTo(Graph o) {
+        return label.compareTo(o.label);
     }
 
     static void link(Graph n1, Graph n2) {

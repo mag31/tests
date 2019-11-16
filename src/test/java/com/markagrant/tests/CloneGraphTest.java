@@ -21,4 +21,36 @@ public class CloneGraphTest {
         assertEquals(original.label, clone.label);
         assertEquals(original.neighbours.size(), clone.neighbours.size());
     }
+
+    @Test
+    public void can_clone_graph_with_two_nodes() {
+        Graph node1 = new Graph("node1");
+        Graph node2 = new Graph("node2");
+
+        Graph.link(node1, node2);
+
+        CloneGraph cloner = new CloneGraph();
+        Graph clone = cloner.clone(node1);
+
+        assertEquals(node1.label, clone.label);
+        assertEquals(node1.neighbours.get(0).label, clone.neighbours.get(0).label);
+    }
+
+    @Test
+    public void can_clone_graph_with_three_nodes() {
+        Graph node1 = new Graph("node1");
+        Graph node2 = new Graph("node2");
+        Graph node3 = new Graph("node3");
+
+        Graph.link(node1, node2);
+        Graph.link(node1, node3);
+        Graph.link(node2, node3);
+
+        CloneGraph cloner = new CloneGraph();
+        Graph clone = cloner.clone(node1);
+
+        assertEquals(node1.label, clone.label);
+        assertEquals(node1.neighbours.get(0).label, clone.neighbours.get(0).label);
+        assertEquals(node1.neighbours.get(1).label, clone.neighbours.get(1).label);
+    }
 }

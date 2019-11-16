@@ -17,7 +17,7 @@ class Graph {
         neighbours = new ArrayList<>();
     }
 
-    private void addNeighbour(Graph neighbour) {
+    void addNeighbour(Graph neighbour) {
         neighbours.add(neighbour);
     }
 
